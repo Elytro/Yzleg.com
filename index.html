@@ -1,23 +1,261 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yzleg.com</title>
-    <style>
-        body { font-family: -apple-system, "Segoe UI", sans-serif; display: flex;
-               min-height: 100vh; align-items: center; justify-content: center;
-               margin: 0; background: #f5f5f5; color: #333; }
-        .card { background: #fff; padding: 3rem 4rem; border-radius: 12px;
-                box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; }
-        h1 { margin: 0 0 .5rem; font-size: 1.6rem; }
-        p { margin: 0; color: #888; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="玉足,美脚,足部美学,足部护理,足部健康">
+<meta name="description" content="玉足美脚 —— 足部美学与日常护理，简单、克制、有温度。">
+<title>玉足美脚 · 足部美学与护理</title>
+<link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a19;
+    --body:#6a6660;
+    --muted:#a39d95;
+    --line:#eae6e0;
+    --gold:#b08d57;
+    --paper:#fdfcfa;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);color:var(--body);
+    font-family:"Songti SC","Noto Serif SC",Georgia,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;letter-spacing:.04em;line-height:1;
+  }
+  h1,h2,h3,h4,h5{margin:0;color:var(--ink);font-weight:400;}
+  p{margin:0;}
+  a{color:var(--ink);transition:color .4s ease;}
+  a:hover,a:focus{color:var(--gold);text-decoration:none;outline:none;}
+  ::selection{background:#efe6d6;color:var(--ink);}
+
+  .container{max-width:1080px;}
+  .eyebrow{font-family:Georgia,serif;font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .sec{padding:110px 0;}
+  .sec-head{text-align:center;margin-bottom:64px;}
+  .sec-head h2{font-size:24px;letter-spacing:.3em;margin-bottom:18px;}
+  .sec-head .tick{width:1px;height:40px;background:linear-gradient(var(--gold),rgba(176,141,87,0));margin:0 auto;}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.6,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* 导航 */
+  .nav-shell{position:fixed;top:0;left:0;right:0;z-index:1030;transition:background .5s ease,border-color .5s ease;}
+  .nav-shell.solid{background:rgba(253,252,250,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);}
+  .nav-shell .navbar{background:none;border:none;margin:0;}
+  .nav-shell .navbar-brand{height:72px;line-height:72px;padding:0 15px;font-size:17px;letter-spacing:.4em;color:var(--ink);}
+  .nav-shell .nav>li>a{height:72px;line-height:72px;padding:0 4px;margin:0 16px;font-size:12px;letter-spacing:.24em;color:var(--body);background:none;position:relative;}
+  .nav-shell .nav>li>a::after{content:"";position:absolute;left:0;right:0;bottom:26px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .45s ease;}
+  .nav-shell .nav>li>a:hover,.nav-shell .nav>li.active>a{color:var(--ink);background:none;}
+  .nav-shell .nav>li>a:hover::after,.nav-shell .nav>li.active>a::after{transform:scaleX(1);transform-origin:left;}
+  .navbar-toggle{border:none;margin-top:19px;}
+  .navbar-toggle .icon-bar{background:var(--ink);}
+  @media(max-width:767px){
+    .navbar-collapse{background:var(--paper);border-top:1px solid var(--line);text-align:center;}
+    .nav-shell .nav>li>a{height:46px;line-height:46px;margin:0;}
+    .nav-shell .nav>li>a::after{display:none;}
+  }
+
+  /* 首屏 */
+  .hero{padding:230px 0 190px;text-align:center;position:relative;}
+  .hero::before{content:"";position:absolute;top:-72px;left:50%;transform:translateX(-50%);width:100%;height:100%;
+    background:radial-gradient(760px 420px at 50% 24%,rgba(176,141,87,.10),transparent 70%);pointer-events:none;}
+  .hero .inner{position:relative;}
+  .hero h1{font-size:56px;letter-spacing:.42em;margin:0 -.42em 26px 0;}
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero .en{font-family:Georgia,serif;font-size:10px;letter-spacing:.62em;color:var(--muted);margin:0 -.62em 34px 0;}
+  .hero .sub{font-size:14px;line-height:2.4;letter-spacing:.12em;color:var(--body);max-width:560px;margin:0 auto 46px;}
+  .hero .rule{width:40px;height:1px;background:var(--line);margin:0 auto 44px;}
+  .btn-line{display:inline-block;font-size:11.5px;letter-spacing:.34em;padding:14px 0 14px .34em;border-bottom:1px solid var(--ink);color:var(--ink);}
+  .btn-line:hover{border-color:var(--gold);letter-spacing:.4em;}
+
+  /* 理念 */
+  .idea{text-align:center;padding:0 26px;}
+  .idea .ico{display:block;font-size:20px;color:#cbbca2;margin-bottom:26px;transition:color .5s ease,transform .5s ease;}
+  .idea:hover .ico{color:var(--gold);transform:translateY(-3px);}
+  .idea h4{font-size:15px;letter-spacing:.26em;margin-bottom:16px;}
+  .idea p{font-size:13px;line-height:2.3;color:var(--muted);letter-spacing:.06em;}
+
+  /* 引言 */
+  .quote{padding:100px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;background:#fff;}
+  .quote p{font-size:20px;line-height:2.3;letter-spacing:.2em;color:#4e4a46;}
+
+  /* 护理 */
+  .care{list-style:none;padding:0;margin:0;max-width:860px;margin:0 auto;}
+  .care li{display:flex;padding:34px 0;border-bottom:1px solid var(--line);}
+  .care li:first-child{border-top:1px solid var(--line);}
+  .care .n{font-family:Georgia,serif;font-size:12px;letter-spacing:.24em;color:var(--gold);width:92px;flex:none;padding-top:5px;}
+  .care .c h5{font-size:16px;letter-spacing:.26em;margin-bottom:14px;}
+  .care .c p{font-size:13px;line-height:2.3;color:var(--muted);letter-spacing:.05em;}
+
+  /* 页脚 */
+  .footer{background:#fff;border-top:1px solid var(--line);padding:64px 0 52px;text-align:center;}
+  .f-brand{font-size:15px;letter-spacing:.44em;color:var(--ink);margin:0 -.44em 20px 0;}
+  .f-beian{font-size:12.5px;line-height:2.4;color:var(--muted);letter-spacing:.08em;}
+  .f-beian a{color:var(--muted);}
+  .f-beian a:hover{color:var(--gold);}
+  .f-beian .gap{color:#ddd7ce;margin:0 10px;}
+  .f-copy{margin-top:14px;font-size:11.5px;letter-spacing:.16em;color:#b8b2aa;}
+  .to-top{position:fixed;right:24px;bottom:24px;width:38px;height:38px;border:1px solid var(--line);background:var(--paper);color:var(--muted);opacity:0;visibility:hidden;transition:all .4s ease;}
+  .to-top.show{opacity:1;visibility:visible;}
+  .to-top:hover{border-color:var(--gold);color:var(--gold);}
+
+  @media(max-width:767px){
+    .sec{padding:72px 0;}
+    .hero{padding:150px 0 110px;}
+    .hero h1{font-size:30px;letter-spacing:.28em;margin-right:-.28em;}
+    .hero .en{letter-spacing:.4em;margin-right:-.4em;}
+    .hero .sub{font-size:13px;line-height:2.2;}
+    .sec-head{margin-bottom:44px;}
+    .sec-head h2{font-size:20px;letter-spacing:.22em;}
+    .idea{margin-bottom:44px;}
+    .quote{padding:70px 0;}
+    .quote p{font-size:16px;letter-spacing:.14em;}
+    .care li{display:block;}
+    .care .n{width:auto;display:block;margin-bottom:10px;}
+    .f-brand{letter-spacing:.3em;margin-right:-.3em;}
+  }
+</style>
 </head>
 <body>
-    <div class="card">
-        <h1>yzleg.com</h1>
-        <p>Site initialized by oject.php</p>
+
+<div class="nav-shell" id="navShell">
+  <div class="container">
+    <nav class="navbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+          <span class="sr-only">导航</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#top">玉足美脚</a>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#top">首页</a></li>
+          <li><a href="#about">理念</a></li>
+          <li><a href="#care">护理</a></li>
+          <li><a href="#footer">联系</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="container inner">
+    <h1>玉足<em>·</em>美脚</h1>
+    <div class="en">FOOT AESTHETICS</div>
+    <div class="rule"></div>
+    <p class="sub">
+      足，是身体最沉默的部分。<br>
+      这里只谈足部美学与日常护理，简单，克制。
+    </p>
+    <a href="#about" class="btn-line">开始了解</a>
+  </div>
+</header>
+
+<section class="sec" id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">About</div>
+      <h2>理念</h2>
+      <div class="tick"></div>
     </div>
+    <div class="row">
+      <div class="col-sm-4 idea reveal">
+        <i class="fa fa-leaf ico"></i>
+        <h4>自然</h4>
+        <p>不堆砌，不浮夸。足部的美来自干净、健康与舒展的状态。</p>
+      </div>
+      <div class="col-sm-4 idea reveal">
+        <i class="fa fa-heart-o ico"></i>
+        <h4>日常</h4>
+        <p>清洁、修整、滋润、放松，四步构成可坚持一整年的习惯。</p>
+      </div>
+      <div class="col-sm-4 idea reveal">
+        <i class="fa fa-book ico"></i>
+        <h4>记录</h4>
+        <p>从形态、线条到步态与鞋履，系统梳理足部美学的方法。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote">
+  <div class="container reveal">
+    <p>美始于足下，<br>也藏在每一次被忽略的日常里。</p>
+  </div>
+</div>
+
+<section class="sec" id="care">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Care</div>
+      <h2>护理四步</h2>
+      <div class="tick"></div>
+    </div>
+    <ul class="care reveal">
+      <li><span class="n">01</span><div class="c"><h5>清洁</h5><p>温水浸泡十分钟软化角质，指缝与甲缘重点清洗，洗后彻底擦干，避免潮湿滋生细菌。</p></div></li>
+      <li><span class="n">02</span><div class="c"><h5>修整</h5><p>指甲平剪、忌过短过圆；角质用磨砂板轻柔处理，同一部位不要反复摩擦。</p></div></li>
+      <li><span class="n">03</span><div class="c"><h5>滋润</h5><p>涂抹含尿素或乳木果油的足霜，重点照顾脚跟与足弓，睡前穿棉袜加强吸收。</p></div></li>
+      <li><span class="n">04</span><div class="c"><h5>放松</h5><p>足底滚压与拉伸各五分钟，配合透气鞋履与轮换穿着，减少挤压与疲劳堆积。</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="f-brand">玉足美脚</div>
+    <div class="f-beian">
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">鲁ICP备2024092961号-34</a>
+      <span class="gap">·</span>
+      <a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="nofollow">鲁公网安备37130202373077号</a>
+    </div>
+    <div class="f-copy">Copyright &copy; 2026 YUZU</div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop"><i class="fa fa-angle-up"></i></button>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+  var $nav=$('#navShell'),$top=$('#toTop');
+
+  $(window).on('scroll',function(){
+    var y=$(this).scrollTop();
+    $nav.toggleClass('solid',y>30);
+    $top.toggleClass('show',y>400);
+  }).trigger('scroll');
+
+  $('a[href^="#"]').on('click',function(e){
+    var id=$(this).attr('href');
+    if(id==='#'||!$(id).length) return;
+    e.preventDefault();
+    $('html,body').stop(true).animate({scrollTop:$(id).offset().top-60},680);
+    $('.navbar-collapse.in').collapse('hide');
+  });
+
+  function reveal(){
+    var h=$(window).height(),s=$(window).scrollTop();
+    $('.reveal').each(function(){
+      if($(this).offset().top < s+h-80){
+        $(this).css('transition-delay',($(this).index()%3)*.12+'s').addClass('in');
+      }
+    });
+  }
+  $(window).on('scroll load',reveal);reveal();
+
+  var ids=['#top','#about','#care','#footer'];
+  $(window).on('scroll',function(){
+    var y=$(this).scrollTop()+130,cur=ids[0];
+    $.each(ids,function(i,s){ if($(s).length&&$(s).offset().top<=y) cur=s; });
+    $('#mainNav li').removeClass('active');
+    $('#mainNav a[href="'+cur+'"]').parent().addClass('active');
+  });
+
+  $top.on('click',function(){$('html,body').animate({scrollTop:0},600);});
+});
+</script>
 </body>
 </html>
